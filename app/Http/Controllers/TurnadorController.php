@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
 use App\Models\turnador;
+use RealRashid\SweetAlert\Facades\Alert;
 class TurnadorController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class TurnadorController extends Controller
     public function index()
     {
         $turnos = DB::table('turnadors')->max('folio');
-        
+        $turnos = $turnos +1 ;
         return view('turnador.index',compact('turnos'));
     }
 
@@ -24,18 +25,21 @@ class TurnadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ProfileRequest $request)
+    public function create()
     {
-       $turnos = DB::table('turnadors')->max('folio');
-       Turnador::create([
-       'folio'=>[$turnos+1],]);
-       
-       return view('turnador.index');
+     $turnos = DB::table('turnadors')->max('folio');
+      $turnos = $turnos + 1;
+      $estatus = 0;
+      $descripcion = "Normal";
+      echo $descripcion;
+      DB::insert('insert into turnadors(folio,descripcion,estatus) values(?,?,?)',[$turnos,$descripcion,$estatus]);
+      
+      return back()->withSuccess('Turno asignado correctamente, espere un momento y nos comunicaremos con usted su número de folio es '.$turnos);
     }
 
     public function store(ProfileRequest $request)
     {
-    
+      
     }
 
     /**

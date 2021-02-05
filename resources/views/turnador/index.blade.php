@@ -19,7 +19,7 @@
               </div>
                 
                 
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                 <div style="background-color: rgba(70, 162, 74, 0.7);" class="modal-content">
                     <div class="modal-header">
@@ -31,8 +31,7 @@
                                 <video id="video" playsinline autoplay></video>
                             </div>
                             <canvas id="canvas" width="500" height="200"></canvas>-->
-                        <form action="{{ route('turnador.create') }}" enctype="multipart/form-data" method="PUT" id="turnador-form">
-                             @csrf 
+                        
                             <div class="container" style="display: flex; justify-content: center; text-align: center;">
                                 <h2>Turno N° </h2><br>
                                 <section>
@@ -43,12 +42,12 @@
                             <p class="footer"></p>
                             
                         </div>
-                      </form>
+                      
                         
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                       <button type="submit" class="btn btn-secondary" data-dismiss="modal" onclick="event.preventDefault(); document.getElementById('turnador-form').submit();">Solicitar Turno</button>  
+                        <a href="{{route('turnador.create')}}"><button type="button" class="btn btn-secondary">Solicitar Turno</button></a>  
                     </div>
                 </div>
             </div>

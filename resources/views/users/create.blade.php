@@ -58,6 +58,24 @@
                 </div>
               @endif
             </div>
+              
+              <div class="bmd-form-group{{ $errors->has('username') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">people</i>
+                  </span>
+                </div>
+                <input type="text" name="username" class="form-control" placeholder="Usuario" value="{{ old('username') }}" onblur="this.value = this.value.toUpperCase();" >
+              </div>
+              @if ($errors->has('apellidoM'))
+                <div id="username-error" class="error text-danger pl-3" for="username" style="display: block;">
+                  <strong>{{ $errors->first('username') }}</strong>
+                </div>
+              @endif
+            </div>
+              
+              
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }} mt-3">
               <div class="input-group">
                 <div class="input-group-prepend">

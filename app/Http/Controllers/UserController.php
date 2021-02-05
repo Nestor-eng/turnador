@@ -32,6 +32,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'apellidoP' => 'required',
+            'username' => 'required',
             'email'=> 'required|unique:users',
             'rol'=>'required',
             'password'=> 'required',
@@ -41,6 +42,7 @@ class UserController extends Controller
             'name' => $request['name'],
             'apellidoP' => $request['apellidoP'],
             'apellidoM'=> $request['apellidoM'],
+            'username'=>$request['username'],
             'email'=> $request['email'],
             'rol'=>$request['rol'],
             'password'=> bcrypt($request['password']),

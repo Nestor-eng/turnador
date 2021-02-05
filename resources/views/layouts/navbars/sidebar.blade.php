@@ -43,15 +43,15 @@
             <p>Solicitar Turno</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
+      <li class="nav-item{{ $activePage == 'especial' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('TurnadorEspecial.create') }}">
           <i class="material-icons">library_books</i>
-            <p>Ver Turnos</p>
+            <p>Turno especial</p>
         </a>
       </li>
       @if(auth()->user()->rol == 1)
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
+      <li class="nav-item{{ $activePage == 'turno' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('TurnadorEspecial.index') }}">
           <i class="material-icons">feed</i>
             <p>Turnos</p>
         </a>
