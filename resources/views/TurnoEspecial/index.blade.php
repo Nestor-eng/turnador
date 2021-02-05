@@ -1,6 +1,7 @@
 @extends('layouts.app', ['activePage' => 'turno', 'titlePage' => __('Table List')])
 
 @section('content')
+<script src="{{ URL::to('/js/funciones.js') }}" defer></script>
  <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -13,7 +14,7 @@
           <div class="card-body">
               
             <div class="table-responsive">
-              <table class="table">
+                <table class="table" id="editTable">
                 <thead class=" text-black">
                   <tr>
                   <th>
@@ -33,8 +34,15 @@
                                 <td>{!! $normal->folio !!}</td>
                                 <td>{!! $normal->descripcion !!}</td>
                                 <td>
-                                    <a href="" class="btn btn-success" title="Accion">Atender</a>   
-                                    
+                                    @if($normal->estatus==0)
+                                    <a onclick="guardarCambios()" class="btn btn-success" title="Accion">Atender</a>   
+                                    @endif
+                                    @if($normal->estatus==1)
+                                    <a onclick="finalizar()" class="btn btn-warning" title="Accion">Terminar</a>   
+                                    @endif
+                                    @if($normal->estatus==2)
+                                    <a title="Accion"><i class="material-icons">check_circle_outline</i><strong> Finalizado</strong></a>   
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -79,8 +87,15 @@
                                 <td><a href="">{!! $turno->telefono !!}</a></td>
                                 <td>{!! $turno->asunto !!}</td>
                                 <td>
-                                    <a href="" class="btn btn-success" title="Accion">Atender</a>   
-                                    
+                                    @if($turno->estatus==0)
+                                    <a onclick="guardarCambios()" class="btn btn-success" title="Accion">Atender</a>   
+                                    @endif
+                                    @if($turno->estatus==1)
+                                    <a onclick="finalizar()" class="btn btn-warning" title="Accion">Terminar</a>   
+                                    @endif   
+                                    @if($turno->estatus==2)
+                                    <a title="Accion"><i class="material-icons">check_circle_outline</i><strong> Finalizado</strong></a>   
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -94,4 +109,5 @@
     </div>
   </div>
 </div>
+
 @endsection

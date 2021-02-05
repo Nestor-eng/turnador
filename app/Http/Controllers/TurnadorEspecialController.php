@@ -81,7 +81,7 @@ class TurnadorEspecialController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

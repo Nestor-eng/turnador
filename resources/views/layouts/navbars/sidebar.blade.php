@@ -1,5 +1,7 @@
-<div class="sidebar" data-color="green" data-background-color="black" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
+<div class="sidebar" data-color="green" data-background-color="black" >
   <!--
+  
+  data-image="{{ asset('material') }}/img/sidebar-1.jpg"
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag
@@ -34,6 +36,14 @@
                 <span class="sidebar-normal">Perfil</span>
               </a>
             </li>
+            @if(auth()->user()->rol == 1)
+      <li class="nav-item{{ $activePage == 'create' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('users.create') }}">
+          <i class="material-icons">person_add</i>
+            <p>Agregar Usuario</p>
+        </a>
+      </li>
+      @endif
             </ul>
         </div>
       </li>
@@ -57,14 +67,7 @@
         </a>
       </li>
       @endif
-      @if(auth()->user()->rol == 1)
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('users.create') }}">
-          <i class="material-icons">person_add</i>
-            <p>Agregar Usuario</p>
-        </a>
-      </li>
-      @endif
+      
     </ul>
   </div>
 </div>
