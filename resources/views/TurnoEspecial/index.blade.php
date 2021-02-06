@@ -34,9 +34,12 @@
                                 <td>{!! $normal->folio !!}</td>
                                 <td>{!! $normal->descripcion !!}</td>
                                 <td>
+                                    <form action="{{ route('TurnadorEspecial.update',$normal->id) }}" method="POST" name="editUser" id="editUser">
+                                     @csrf
                                     @if($normal->estatus==0)
                                     <a onclick="guardarCambios()" class="btn btn-success" title="Accion">Atender</a>   
                                     @endif
+                                    </form>
                                     @if($normal->estatus==1)
                                     <a onclick="finalizar()" class="btn btn-warning" title="Accion">Terminar</a>   
                                     @endif
@@ -88,13 +91,21 @@
                                 <td>{!! $turno->asunto !!}</td>
                                 <td>
                                     @if($turno->estatus==0)
-                                    <a onclick="guardarCambios()" class="btn btn-success" title="Accion">Atender</a>   
+                                    <form action="{{ route('TurnadorEspecial.update',$turno->id) }}" method="POST">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-success" title="Accion">Atender</button>  
+                                    </form>
                                     @endif
                                     @if($turno->estatus==1)
-                                    <a onclick="finalizar()" class="btn btn-warning" title="Accion">Terminar</a>   
-                                    @endif   
+                                    <form action="{{ route('TurnadorEspecial.cambiar',$turno->id) }}" method="POST">
+                                     @csrf
+                                      @method('put')
+                                   <button class="btn btn-warning" title="Accion2">Finalizar</button>  
+                                    </form>  
+                                    @endif
                                     @if($turno->estatus==2)
-                                    <a title="Accion"><i class="material-icons">check_circle_outline</i><strong> Finalizado</strong></a>   
+                                    <a title="Accion3"><i class="material-icons">check_circle_outline</i><strong> Finalizado</strong></a>   
                                     @endif
                                 </td>
                             </tr>

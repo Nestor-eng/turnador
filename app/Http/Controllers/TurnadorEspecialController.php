@@ -82,6 +82,7 @@ class TurnadorEspecialController extends Controller
     public function edit($id)
     {
         
+        
     }
 
     /**
@@ -91,19 +92,24 @@ class TurnadorEspecialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+  
+        DB::update('update turnador_especials set estatus = ?  where id = ?', [1, $id]);
+        return back()->withSuccess('Gracias'.$id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+   public function cambiar($id)
     {
-        //
+   
+      
+        DB::update('update turnador_especials set estatus = ?  where id = ?', [2, $id]);
+        return back()->withSuccess('Gracias'.$id);
+    }
+
+
+   public function destroy($folio)
+    {
+       
     }
 }
