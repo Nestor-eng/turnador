@@ -98,11 +98,7 @@
                                     </form>
                                     @endif
                                     @if($turno->estatus==1)
-                                    <form action="{{ route('TurnadorEspecial.cambiar',$turno->id) }}" method="POST">
-                                     @csrf
-                                      @method('put')
-                                   <button class="btn btn-warning" title="Accion2">Finalizar</button>  
-                                    </form>  
+                                    <a  href="{{route('TurnadorEspecial.cambiar',$turno->id)}}"class="btn btn-warning" title="Accion2">Finalizar</a>                
                                     @endif
                                     @if($turno->estatus==2)
                                     <a title="Accion3"><i class="material-icons">check_circle_outline</i><strong> Finalizado</strong></a>   
