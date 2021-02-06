@@ -7,6 +7,7 @@ use App\Models\TurnadorEspecial;
 use App\Models\turnador; 
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 class TurnadorEspecialController extends Controller
 {
     /**
@@ -70,15 +71,9 @@ class TurnadorEspecialController extends Controller
      */
     public function show($id)
     {
-        //
+      
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         
@@ -94,9 +89,17 @@ class TurnadorEspecialController extends Controller
      */
     public function update($id)
     {
-  
+        $turnador = DB::select('select estatus from turnador_especials where id=?',[$id]);
+        $opcion = $turnador[0]->estatus;
+        if($opcion == 0){
+
         DB::update('update turnador_especials set estatus = ?  where id = ?', [1, $id]);
-        return back()->withSuccess('Gracias'.$id);
+        return redirect('TurnadorEspecial')->withSuccess('Gracias');
+        }
+        elseif ($opcion == 1) {
+        DB::update('update turnador_especials set estatus = ?  where id = ?', [2, $id]);
+        return back()->withSuccess('Gracias');
+    }
     }
 
    public function cambiar($id)

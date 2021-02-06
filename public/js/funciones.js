@@ -1,6 +1,11 @@
+
+// Prevent the href from redirecting directly
+//
 function guardarCambios(){
-    swal({
-            timer: 10000,
+  
+       
+         swal({
+          
             title: "¿Deseas atender el soporte?",
             text: "",
             type: "info",
@@ -13,7 +18,7 @@ function guardarCambios(){
 
             function(){
                 
-               document.editTable.submit();
+               document.estatus.submit();
 
             });    
 }

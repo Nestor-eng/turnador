@@ -37,9 +37,11 @@ class TurnadorController extends Controller
       return back()->withSuccess('Turno asignado correctamente, espere un momento y nos comunicaremos con usted su número de folio es '.$turnos);
     }
 
-    public function store(ProfileRequest $request)
+    public function store()
     {
-      
+       $cuenta= DB::select('select count(*) from turnador_especials where estatus = ?',[0]);
+       $contador = $cuenta[0];
+       return view('auth',compact('contador'));
     }
 
     /**

@@ -5,7 +5,7 @@
  <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12">
+<!--      <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-success">
             <h4 class="card-title ">Turnos Normales</h4>
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
       <div class="col-md-12">
         <div class="card card-header-danger">
           <div class="card-header card-header-success">
@@ -91,14 +91,59 @@
                                 <td>{!! $turno->asunto !!}</td>
                                 <td>
                                     @if($turno->estatus==0)
-                                    <form action="{{ route('TurnadorEspecial.update',$turno->id) }}" method="POST">
-                                    @csrf
-                                    @method('put')
-                                    <button class="btn btn-success" title="Accion">Atender</button>  
-                                    </form>
+                                  
+                                    <button class="btn btn-success" title="Accion" name="Confirmar" id="Confirmar" data-toggle="modal" data-target="#exampleModalCenter">Atender</button> 
+<!--                                onclick="return confirm('¿Desea atender el soporte?')" -->
+                                    <div class="modal fade bd-example-modal-sm" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">SOPORTE</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('TurnadorEspecial.update',$turno->id) }}" method="POST" id="Turno">
+                                                     @csrf
+                                                     @method('put')
+                                                    ¿Desea atender el soporte?
+                                                     </form> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-success" data-dismiss="modal" onclick="event.preventDefault(); document.getElementById('Turno').submit();">Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                                   
                                     @endif
                                     @if($turno->estatus==1)
-                                    <a  href="{{route('TurnadorEspecial.cambiar',$turno->id)}}"class="btn btn-warning" title="Accion2">Finalizar</a>                
+                                    <button class="btn btn-warning" title="Accion" name="Confirmar2" id="Confirmar2" data-toggle="modal" data-target="#exampleModalCenter2">Finalizar</button> 
+<!--                                onclick="return confirm('¿Desea atender el soporte?')" -->
+                                    <div class="modal fade bd-example-modal-sm" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">SOPORTE</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('TurnadorEspecial.update',$turno->id) }}" method="POST" id="Turno">
+                                                     @csrf
+                                                     @method('put')
+                                                     ¿Desea Finalizar el soporte?
+                                                     </form> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-success" data-dismiss="modal" onclick="event.preventDefault(); document.getElementById('Turno').submit();">Aceptar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>            
                                     @endif
                                     @if($turno->estatus==2)
                                     <a title="Accion3"><i class="material-icons">check_circle_outline</i><strong> Finalizado</strong></a>   

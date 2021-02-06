@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
         Route::resource('turnador','App\Http\Controllers\TurnadorController');
         Route::resource('TurnadorEspecial','App\Http\Controllers\TurnadorEspecialController');
-        Route::put('TurnadorEspecial/{folio}', ['as' => 'TurnadorEspecial.cambiar', 'uses' => 'App\Http\Controllers\TurnadorEspecialController@cambiar']);
+        Route::put('TurnadorEspecial/{id}', ['as' => 'TurnadorEspecial.cambiar', 'uses' => 'App\Http\Controllers\TurnadorEspecialController@cambiar']);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

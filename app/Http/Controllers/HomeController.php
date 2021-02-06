@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use App\Models\TurnadorEspecial; 
 class HomeController extends Controller
 {
     /**
@@ -11,7 +12,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+         $cuenta= DB::select('select count(*) from turnador_especials where estatus = ?',[0]);
+       $contador = $cuenta[0];
+        $this->middleware('auth',compact('contador'));
     }
 
     /**
@@ -20,7 +23,8 @@ class HomeController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {
-        return view('dashboard');
+    {  $cuenta= DB::select('select count(*) from turnador_especials where estatus = ?',[0]);
+       $contador = $cuenta[0];
+        return view('dashboard',compact('contador'));
     }
 }
