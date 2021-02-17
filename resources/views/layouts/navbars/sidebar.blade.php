@@ -47,16 +47,16 @@
             </ul>
         </div>
       </li>
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+<!--      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('turnador.index') }}">
           <i class="material-icons">content_paste</i>
             <p>Solicitar Turno</p>
         </a>
-      </li>
+      </li>-->
       <li class="nav-item{{ $activePage == 'especial' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('TurnadorEspecial.create') }}">
           <i class="material-icons">library_books</i>
-            <p>Turno especial</p>
+            <p>Solicitar Turno</p>
         </a>
       </li>
       @if(auth()->user()->rol == 1)

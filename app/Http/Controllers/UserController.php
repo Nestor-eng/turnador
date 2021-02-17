@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\cat_role; 
-
-class UserController extends Controller
+use App\Models\cat_municipio; 
+use App\Models\TurnadorEspecial; 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class UserController extends Authenticatable
 {
     /**
      * Display a listing of the users
@@ -20,12 +22,14 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        $turnos = DB::select('select * from turnador_specials where estatus? =',[0]);
+        return view('users.index', ['users','turnos' => $model->paginate(15)],compact('turnos'));
     }
     public function usercreate()
     {
         $roles= DB::select('select * from cat_roles');
-        return view('users.create',compact('roles'));
+        $municipios = DB::select('select * from cat_municipios');
+        return view('users.create',compact('roles','municipios'));
     }
     public function create(ProfileRequest $request){
         
@@ -35,6 +39,7 @@ class UserController extends Controller
             'username' => 'required',
             'email'=> 'required|unique:users',
             'rol'=>'required',
+            'municipio'=>'required',
             'password'=> 'required',
         ]);
     
@@ -45,6 +50,7 @@ class UserController extends Controller
             'username'=>$request['username'],
             'email'=> $request['email'],
             'rol'=>$request['rol'],
+            'municipio'=>$request['municipio'],
             'password'=> bcrypt($request['password']),
         ]);
     

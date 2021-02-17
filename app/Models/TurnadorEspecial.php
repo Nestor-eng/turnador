@@ -15,6 +15,8 @@ class TurnadorEspecial extends Model
         'folio',
         'asunto',
         'descripcion',
-        'estatus'
+        'estatus',
+        'created_at',
+        'municipio'
     ];
 }

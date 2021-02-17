@@ -115,6 +115,27 @@
             </div>
                
             
+            <div class="bmd-form-group{{ $errors->has('municipio') ? ' has-danger' : '' }} mt-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">corporate_fare</i>
+                  </span>
+                </div>
+                  <select class="form-control" name="municipio" id="municipio" >
+                      <option value='0'>Seleccione una opción</option>
+                            @foreach($municipios as $municipio)
+                                <option value='{{ $municipio->id }}'>{{ $municipio->municipio_name }}</option>
+                            @endforeach
+                    </select>
+                    @error('rol')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>  
+              
           
               
             <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">

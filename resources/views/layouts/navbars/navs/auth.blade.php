@@ -12,33 +12,24 @@
         
       </form>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('home') }}">
-            <i class="material-icons">dashboard</i>
-            <p class="d-lg-none d-md-block">
-              Inicio
-            </p>
-          </a>
-        </li>
+        
         <li class="nav-item dropdown">
           <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">notifications</i>
-            <span class="notification">{{auth()->user()->name}}</span>
+            <span class="notification"></span>
             <p class="d-lg-none d-md-block">
               Notificaciones
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">{{ __('Mike John responded to your email') }}</a>
-            <a class="dropdown-item" href="#">{{ __('You have 5 new tasks') }}</a>
-            <a class="dropdown-item" href="#">{{ __('You\'re now friend with Andrew') }}</a>
-            <a class="dropdown-item" href="#">{{ __('Another Notification') }}</a>
-            <a class="dropdown-item" href="#">{{ __('Another One') }}</a>
+             
+            <a class="dropdown-item" href="#"></a>
+           
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="material-icons">person</i>
+          <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="material-icons">person</i> {{auth()->user()->username}}
             <p class="d-lg-none d-md-block">
               Cuenta
             </p>

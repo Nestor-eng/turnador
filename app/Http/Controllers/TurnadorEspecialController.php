@@ -8,6 +8,9 @@ use App\Models\turnador;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use App\Models\User;
+use Carbon\Carbon;
 class TurnadorEspecialController extends Controller
 {
     /**
@@ -17,9 +20,9 @@ class TurnadorEspecialController extends Controller
      */
     public function index()
     {
-      $normales = turnador::all();
-      $turnos = TurnadorEspecial::all();
-      return view('TurnoEspecial.index',compact('turnos','normales'));
+      
+      $turnos = DB::table('turnador_especials')->orderByDesc('folio', 'desc')->get();
+      return view('TurnoEspecial.index',compact('turnos'));
     }
 
     /**
@@ -51,16 +54,25 @@ class TurnadorEspecialController extends Controller
             ]);
     $turnos = DB::table('turnador_especials')->max('folio');
         $turnos = $turnos +1;
+        $prueba = Carbon::now();
+        $prueba = Carbon::now('America/Mexico_City');
+        $usuario = $request['usuario'];
+        $datos = DB::table('users')
+                ->where('username',$usuario)
+                ->value('municipio');
+        
         TurnadorEspecial::create([
-            'folio'=>$request['folio'],
+            'folio'=>$turnos,
             'usuario' => $request['usuario'],
             'telefono' => $request['telefono'],
             'asunto' => $request['asunto'],
             'descripcion'=> $request['descripcion'],
+            'created_at'=>$prueba,
             'estatus'=>$request=0,
+            'municipio'=>$datos,
            ]);
     
-        return back()->withSuccess('Agregado Correctamente, su número de folio es: '.$turnos);
+        return back()->withSuccess('Agregado Correctamente, su número de folio es: '.$turnos.'<h3><font color="red">NOTA: SOLO SE LE ATENDERÁ CON SU NÚMERO DE FOLIO</h3>');
     }
 
     /**
@@ -69,9 +81,13 @@ class TurnadorEspecialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($folio)
     {
-      
+        
+        $turnos = TurnadorEspecial::where('folio','=', $folio)->firstOrFail();
+       
+        
+      return view('TurnoEspecial.show',compact('turnos'));
     }
     
     public function edit($id)
@@ -87,18 +103,20 @@ class TurnadorEspecialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update($folio)
     {
-        $turnador = DB::select('select estatus from turnador_especials where id=?',[$id]);
+        $turnador = DB::select('select estatus from turnador_especials where folio = ?',[$folio]);
         $opcion = $turnador[0]->estatus;
+        echo $opcion;
         if($opcion == 0){
 
-        DB::update('update turnador_especials set estatus = ?  where id = ?', [1, $id]);
-        return redirect('TurnadorEspecial')->withSuccess('Gracias');
+        DB::update('update turnador_especials set estatus = ?  where folio = ?', [1, $folio]);
+        return back()->withSuccess('Gracias');
+        
         }
         elseif ($opcion == 1) {
-        DB::update('update turnador_especials set estatus = ?  where id = ?', [2, $id]);
-        return back()->withSuccess('Gracias');
+        DB::update('update turnador_especials set estatus = ?  where folio = ?', [2, $folio]);
+        return redirect('TurnadorEspecial')->withSuccess('Gracias');
     }
     }
 

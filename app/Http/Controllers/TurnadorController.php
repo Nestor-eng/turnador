@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
 use App\Models\turnador;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\TurnadorEspecial; 
 class TurnadorController extends Controller
 {
     /**
@@ -15,9 +16,9 @@ class TurnadorController extends Controller
      */
     public function index()
     {
-        $turnos = DB::table('turnadors')->max('folio');
+        $turnos = DB::table('turnador_especials')->max('folio');
         $turnos = $turnos +1 ;
-        return view('turnador.index',compact('turnos'));
+        return view('turnador.auth',compact('turnos'));
     }
 
     /**
