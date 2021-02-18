@@ -20,9 +20,10 @@ class TurnadorEspecialController extends Controller
      */
     public function index()
     {
-      
-      $turnos = DB::table('turnador_especials')->orderByDesc('folio', 'desc')->get();
-      return view('TurnoEspecial.index',compact('turnos'));
+       $date = Carbon::yesterday();
+      $prueba = Carbon::now('America/Mexico_City');
+      $turnos = DB::table('turnador_especials')->orderBy('folio', 'desc')->get();
+      return view('TurnoEspecial.index',compact('turnos'))->withSuccess($date);
     }
 
     /**

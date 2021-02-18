@@ -14,7 +14,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table dt-responsive data-table table-hover" id="example" class="display" >
+              <table  class="table dt-responsive data-table table-hover" id="example" class="display" >
                 <thead class="">
                   <tr>
                   <th>
@@ -70,49 +70,43 @@
     </div>
   </div>
 </div>
+
+<script>
+  function actualizar(){
+  $('#example').fadeOut("slow").load('./table_oficinatecnica.php').fadeIn("slow");
+  }
+  setInterval( "actualizar()", 10000);
+</script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();
 } );
 
 
-
-
-
-
-
 </script>
 
-<script type="text/javascript">
-  $(function() {
-    
-    
-    var table = $('.data-table').DataTable({
-        "language": {
-           "Processing":    "Procesando...",
-           "LengthMenu":    "Mostrar _MENU_ registros",
-           "ZeroRecords":   "No se encontraron resultados",
-           "EmptyTable":    "Ningún dato disponible en esta tabla",
-           "Info":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-           "InfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-           "InfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-           "InfoPostFix":   "",
-           "Search":        "Buscar:",
-           "Url":           "",
-           "InfoThousands":  ",",
-           "LoadingRecords": "Cargando...",
-           "Paginate": {
-               "First":    "Primero",
-               "Last":    "Último",
-               "Next":    "Siguiente",
-               "Previous": "Anterior"
-           },
-           "Aria": {
-               "SortAscending":  ": Activar para ordenar la columna de manera ascendente",
-               "SortDescending": ": Activar para ordenar la columna de manera descendente"
-           }
-       }
-  });
-  }
-</script>   
+<script>
+      var table;
+      $(document).ready(function(){
+       var table = $('#example').DataTable({
+          "destroy": true,
+          "order": [[0, "desc"]],
+          "language":{
+          "lengthMenu": "Mostrar _MENU_ Registros por página",
+          "info": "Mostrando pagina _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrada de _MAX_ registros)",
+            "loadingRecords": "Cargando...",
+            "processing":     "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords":    "No se encontraron registros coincidentes",
+            "paginate": {
+              "next":       "Siguiente",
+              "previous":   "Anterior"
+            },          
+          },   
+        }); 
+      });
+    </script>
 @endsection
