@@ -86,9 +86,18 @@ class TurnadorEspecialController extends Controller
     {
         
         $turnos = TurnadorEspecial::where('folio','=', $folio)->firstOrFail();
-       
-        
-      return view('TurnoEspecial.show',compact('turnos'));
+        $usuario = $turnos->usuario;
+        echo $usuario;
+       $nombre = DB::table('users')
+                ->where('username',$usuario)
+                ->value('name');
+        $apellidoP = DB::table('users')
+                ->where('username',$usuario)
+                ->value('apellidoP');
+        $apellidoM = DB::table('users')
+                ->where('username',$usuario)
+                ->value('apellidoM');
+      return view('TurnoEspecial.show',compact('turnos','nombre','apellidoP','apellidoM'));
     }
     
     public function edit($id)

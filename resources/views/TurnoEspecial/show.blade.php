@@ -62,14 +62,26 @@
               <p class="card-category"></p>
               <h3 class="card-title">Folio Numero: {{$turnos->folio}}</h3>
             </div>
-              <br><p><strong><font size=3>Usuario: {{$turnos->usuario}} </strong></p>
+              <div class="content col-lg-12">
+              <br><p style="text-align: center"><strong><font size=3>Usuario: </font></strong>{{$turnos->usuario}}</p>
+              </div>
               <hr>
-                  <p><strong><font size=3>Teléfono: </font>{{$turnos->telefono}}</strong></p>
-              <hr>
-                  <p><strong><font size=3>Asunto: {{$turnos->asunto}}</strong></p>
-              <hr>         
-              <p  width="100%"><strong><font size=3>Descripción: {{$turnos->descripcion}}</strong></p>
-              <hr>
+              <div class="content col-lg-12">
+                  <p style="text-align: center"><strong><font size=3>Nombre: </font></strong>{{$nombre}} {{$apellidoP}} {{$apellidoM}}</p>
+              </div>
+                  <hr>
+              <div class="content col-lg-12">
+                  <p style="text-align: center"><strong><font size=3>Teléfono: </font></strong>{{$turnos->telefono}}</p>
+              </div>
+                  <hr>
+              <div class="content col-lg-12">
+                  <p style="text-align: center"><strong><font size=3>Asunto: </font></strong>{{$turnos->asunto}}</p>
+              </div>
+                  <hr> 
+              <div class="content col-lg-12">
+                  <p ><strong><font size=3>Descripción</font></strong><p style="text-align: justify; text-transform: lowercase;"> {{$turnos->descripcion}}</p></p>
+              </div>
+                  <hr>
               
               @if($turnos->estatus==0)
               <div class="card-footer" style="display: flex; justify-content: center; text-align: center;">
@@ -97,6 +109,7 @@
       </div>
     </div>
   </div>
+  </div>>
 @endsection
 
 @push('js')

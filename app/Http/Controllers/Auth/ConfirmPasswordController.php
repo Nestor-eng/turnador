@@ -35,6 +35,8 @@ class ConfirmPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $cuenta= DB::select('select count(*) from turnador_especials where estatus = ?',[0]);
+       $contador = $cuenta[0];
+        $this->middleware('auth',compact('contador'));
     }
 }

@@ -71,19 +71,17 @@
   </div>
 </div>
 
-<script>
+<!--<script>
   function actualizar(){
   $('#example').fadeOut("slow").load('./table_oficinatecnica.php').fadeIn("slow");
   }
   setInterval( "actualizar()", 10000);
-</script>
+</script>-->
 
 <script type="text/javascript">
 $(document).ready(function() {
     $('#example').DataTable();
 } );
-
-
 </script>
 
 <script>
